@@ -1,13 +1,6 @@
 import streamlit as st
-import kagglehub
-import os
-import pandas as pd
+from utils import load_data
 import bm25s
-
-@st.cache_data
-def load_data():
-    path = kagglehub.dataset_download("gpreda/bbc-news")
-    return pd.read_csv(os.path.join(path, "bbc_news.csv"))
 
 with st.sidebar:
     query = st.text_input("Query", value="Retrieval augmented generation")
