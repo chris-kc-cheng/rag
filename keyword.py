@@ -1,5 +1,6 @@
 import streamlit as st
 from utils import load_data
+import pandas as pd
 import bm25s
 
 with st.sidebar:
