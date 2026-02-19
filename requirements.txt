@@ -1,2 +1,3 @@
 streamlit
 bm25s
+sentence_transformers
