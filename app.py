@@ -2,8 +2,8 @@ import streamlit as st
 
 pages = {
     "RAG": [
-        st.Page("keyword.py", title="Keyword Search (BM25)"),
-        st.Page("semantic.py", title="Semantic Search (Embedding)"),
+        st.Page("bm25.py", title="Keyword Search (BM25)"),
+        st.Page("embedding.py", title="Semantic Search (Embedding)"),
     ],
 }
 

@@ -22,19 +22,23 @@ retriever.index(corpus_tokens)
 query_tokens = bm25s.tokenize(query)
 docs, scores = retriever.retrieve(query_tokens, k=k)
 
-id_query = {corpus_tokens.vocab[q]: q for q in list(query_tokens.vocab) if q in corpus_tokens.vocab}
+id_query = {corpus_tokens.vocab[q]: q for q in list(
+    query_tokens.vocab) if q in corpus_tokens.vocab}
 id_doc = [corpus.index(d) for d in docs[0]]
-count = pd.DataFrame({d: {id_query[t]: corpus_tokens.ids[d].count(t) for t in id_query} for d in id_doc}).T
+count = pd.DataFrame({d: {id_query[t]: corpus_tokens.ids[d].count(
+    t) for t in id_query} for d in id_doc}).T
 score = pd.Series(scores[0], index=id_doc, name="score")
 news_data = count.join(news_data).join(score)
 
 st.title("BM25 (Best Matching 25)")
-st.write("The BBC data set contains ", len(corpus_tokens.ids), "documents and ", len(corpus_tokens.vocab), " tokens.")
+st.write("The BBC data set contains ", len(corpus_tokens.ids),
+         "documents and ", len(corpus_tokens.vocab), " tokens.")
 st.write("The query", query, " contains ", len(query_tokens.vocab), " tokens:")
 st.markdown(" ".join(f"`{token}`" for token in query_tokens.vocab))
 
 for i, (index, row) in enumerate(news_data.iterrows()):
     with st.expander(f"**Rank {i + 1}**: Score {row['score']:.2f}", expanded=True):
         st.markdown(f"**{row['title']}**")
-        st.text(row["description"])        
-        st.markdown(" ".join([f":{'green' if row[token] > 0 else 'red'}-badge[{token} ({row[token]})]" for token in id_query.values()]))
+        st.text(row["description"])
+        st.markdown(" ".join(
+            [f":{'green' if row[token] > 0 else 'red'}-badge[{token} ({row[token]})]" for token in id_query.values()]))
