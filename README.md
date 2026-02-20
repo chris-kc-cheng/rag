@@ -12,10 +12,15 @@ This repository is for learning and experimenting with Retrieval-Augmented Gener
   - Bag of words: word order is ignored, only presence and frequency matter
   - TF-IDF (Term Frequency Inverse Document Frequency)
   - BM25 (Best Matching 25) - more commonly used
+
     $$ IDF = \frac{TF \times (k_1 + 1)}{TF + k_1 \times (1 - b + b(\frac{\text{document length}}{\text{average document length}}))} $$
+
     where
     - $k_1$ is Term Frequency Saturation
     - $b$ is Length Normalization
+
+![BM25](images/bm25.jpeg)
+
 - Semantic Search (similar meaning, dense vectors)
   - Embedding models map tokens to a location in space, represented by a vector of many dimensions
   - Contrastive training process using positive/negative pairs
@@ -24,6 +29,9 @@ This repository is for learning and experimenting with Retrieval-Augmented Gener
     - Cosine similarity: direction, range from -1 to 1
     - Dot product: projection
   - Reciprocal Rank Function: cares only ranks, not scores
+
+![BM25](images/pca.gif)
+
 - Metadata Filtering
   - Pros: Simple, fast, enforce strict rules
   - Cons: Rigid, not true search
@@ -40,8 +48,9 @@ This repository is for learning and experimenting with Retrieval-Augmented Gener
   - `sentence_transformers`
 
 ## Vector Databases
+
 - Approximate Nearest Neighbor algorithm (ANN) does not guarantee to find the absolute cloest documents, but is significantly faster than K Nearest Neighbors (KNN)
-- Navigable Small World algorithm uses proximity graphs as the fundamental structure 
+- Navigable Small World algorithm uses proximity graphs as the fundamental structure
 
 ## LLMs and Text Generation
 
