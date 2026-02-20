@@ -2,6 +2,10 @@
 
 This repository is for learning and experimenting with Retrieval-Augmented Generation (RAG) for AI applications.
 
+<a href="https://learn-rag.streamlit.app/">
+    <img src='https://static.streamlit.io/badges/streamlit_badge_black_white.svg' alt='Play' style='border: none;' />
+</a>
+
 ## Information Retrieval and Search
 
 - Keyword Search (exact words, sparse vectors)
