@@ -54,6 +54,13 @@ This repository is for learning and experimenting with Retrieval-Augmented Gener
 - Approximate Nearest Neighbor algorithm (ANN) does not guarantee to find the absolute cloest documents, but is significantly faster than K Nearest Neighbors (KNN)
 - Navigable Small World (NSW) algorithm uses proximity graphs as the fundamental structure
 - Hierarchical Navigable Small World (HNSW) uses layers of graphs to speed up, $O(logN)$
+- Chunking improve relevancy
+  - Too large
+  - Too small
+  - Fixed Size with Overlapping Chunking, minimize world cut off from context
+  - Recursive Character Splitting
+- Useful Python libraries
+  - `Weaviate`
 
 ## LLMs and Text Generation
 

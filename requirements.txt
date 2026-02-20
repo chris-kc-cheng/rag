@@ -1,4 +1,5 @@
 streamlit[charts]
 bm25s
 sentence_transformers
+weaviate-client[agents]
 kagglehub
