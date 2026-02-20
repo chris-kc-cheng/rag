@@ -15,23 +15,27 @@ measures = {
     'Dot Product': (linear_kernel, -1),
 }
 
+
 @st.cache_data
 def load_model(model_name):
     return SentenceTransformer(model_name)
 
+
 @st.cache_data
 def load_embeddings(model_name):
-    # return load_model(model_name).encode(data)
-    return joblib.load(model_name.split("/")[-1] + ".joblib")
+    return joblib.load("models/" + model_name.split("/")[-1] + ".joblib")
+
 
 if "words" not in st.session_state:
-    st.session_state.words = ["cat", "dog", "apple", "banana", "car", "automobile", "Canada", "Toronto"]
+    st.session_state.words = ["cat", "dog", "apple",
+                              "banana", "car", "automobile", "Canada", "Toronto"]
 
 with st.sidebar:
-    model_name = st.selectbox("Model", options=["all-MiniLM-L6-v2"], index=0)
+    model_name = st.selectbox(
+        "Model", options=["all-MiniLM-L6-v2", "paraphrase-MiniLM-L3-v2"], index=0)
     measure = st.selectbox("Measure", options=measures, index=0)
     query = st.text_input("Query", value="Retrieval augmented generation")
-    k = st.slider("Top", min_value=1, max_value=20, value=10)    
+    k = st.slider("Top", min_value=1, max_value=20, value=10)
 
 model = load_model(model_name)
 news_data = load_data()
@@ -55,13 +59,16 @@ for j, i in enumerate(idx):
 st.header("Visualization")
 is_3d = st.toggle("3D", value=True)
 
+
 def add_word():
     word = st.session_state.new_word
     if word:
         st.session_state.words.append(word)
         st.session_state.new_word = ""
 
-word = st.text_input("Add a new word/sentence", key="new_word", on_change=add_word)
+
+word = st.text_input("Add a new word/sentence",
+                     key="new_word", on_change=add_word)
 
 # Visualization
 
@@ -83,7 +90,7 @@ if is_3d:
         x="Principal Component 1", y="Principal Component 2", z="Principal Component 3",
         color="Sentence",
         text="Sentence",
-        hover_name="Sentence",        
+        hover_name="Sentence",
     ).update_layout(
         height=800,
         scene=dict(
@@ -107,9 +114,9 @@ else:
     ).interactive()
 
     labels = alt.Chart(df).mark_text(
-        align="left", 
+        align="left",
         baseline="middle",
-        dx=7, 
+        dx=7,
         dy=-7,
         fontSize=12
     ).encode(

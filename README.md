@@ -13,7 +13,9 @@ This repository is for learning and experimenting with Retrieval-Augmented Gener
   - TF-IDF (Term Frequency Inverse Document Frequency)
   - BM25 (Best Matching 25) - more commonly used
 
-    $$ IDF = \frac{TF \times (k_1 + 1)}{TF + k_1 \times (1 - b + b(\frac{\text{document length}}{\text{average document length}}))} $$
+```math
+  IDF = \frac{TF \times (k_1 + 1)}{TF + k_1 \times (1 - b + b(\frac{\text{document length}}{\text{average document length}}))}
+```
 
     where
     - $k_1$ is Term Frequency Saturation
@@ -50,7 +52,8 @@ This repository is for learning and experimenting with Retrieval-Augmented Gener
 ## Vector Databases
 
 - Approximate Nearest Neighbor algorithm (ANN) does not guarantee to find the absolute cloest documents, but is significantly faster than K Nearest Neighbors (KNN)
-- Navigable Small World algorithm uses proximity graphs as the fundamental structure
+- Navigable Small World (NSW) algorithm uses proximity graphs as the fundamental structure
+- Hierarchical Navigable Small World (HNSW) uses layers of graphs to speed up, $O(logN)$
 
 ## LLMs and Text Generation
 
