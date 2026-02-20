@@ -28,7 +28,7 @@ if "words" not in st.session_state:
     st.session_state.words = ["cat", "dog", "apple", "banana", "car", "automobile", "Canada", "Toronto"]
 
 with st.sidebar:
-    model_name = st.selectbox("Model", options=["all-MiniLM-L6-v2", "BAAI/bge-base-en-v1.5"], index=0)
+    model_name = st.selectbox("Model", options=["all-MiniLM-L6-v2"], index=0)
     measure = st.selectbox("Measure", options=measures, index=0)
     query = st.text_input("Query", value="Retrieval augmented generation")
     k = st.slider("Top", min_value=1, max_value=20, value=10)    

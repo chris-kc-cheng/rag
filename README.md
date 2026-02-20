@@ -40,6 +40,8 @@ This repository is for learning and experimenting with Retrieval-Augmented Gener
   - `sentence_transformers`
 
 ## Vector Databases
+- Approximate Nearest Neighbor algorithm (ANN) does not guarantee to find the absolute cloest documents, but is significantly faster than K Nearest Neighbors (KNN)
+- Navigable Small World algorithm uses proximity graphs as the fundamental structure 
 
 ## LLMs and Text Generation
 
