@@ -5,6 +5,9 @@ pages = {
         st.Page("bm25.py", title="Keyword Search (BM25)"),
         st.Page("embedding.py", title="Semantic Search (Embedding)"),
     ],
+    "Vector Database": [
+        st.Page("db.py", title="Weaviate Cloud"),
+    ],
 }
 
 st.set_page_config(

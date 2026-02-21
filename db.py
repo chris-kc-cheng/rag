@@ -1,5 +1,5 @@
 import os
-import json
+import pandas as pd
 import streamlit as st
 import weaviate
 
@@ -17,18 +17,18 @@ with st.sidebar:
     k = st.slider("Top", min_value=1, max_value=20, value=10)
 
     with st.expander("Hyperparameters", expanded=True):
-        alpha = st.slider("Alpha", min_value=0., max_value=10., value=0.25)
-
-with get_database_session() as client:
-
-    movies = client.collections.use("Movie")
-
-    response = movies.query.near_text(
-        query=query,
-        limit=2
-    )
+        alpha = st.slider("Alpha", min_value=0., max_value=1., value=0.05)
 
 st.title("Vector Database")
 
-for obj in response.objects:
-    st.write(json.dumps(obj.properties, indent=2))
+with get_database_session() as client:
+    news_collection = client.collections.use("bbc_collection")
+
+    df = pd.DataFrame({
+        "Keyword": pd.Series([o.properties["title"] for o in news_collection.query.bm25(
+            query, limit=k).objects]),
+        'Semantic': pd.Series([o.properties["title"] for o in news_collection.query.near_text(query, limit=k).objects]),
+        "Hybrid": pd.Series([o.properties["title"] for o in news_collection.query.hybrid(
+            query, alpha=alpha, limit=k).objects]),
+    })
+    st.dataframe(df)

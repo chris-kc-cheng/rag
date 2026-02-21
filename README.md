@@ -55,10 +55,22 @@ This repository is for learning and experimenting with Retrieval-Augmented Gener
 - Navigable Small World (NSW) algorithm uses proximity graphs as the fundamental structure
 - Hierarchical Navigable Small World (HNSW) uses layers of graphs to speed up, $O(logN)$
 - Chunking improve relevancy
-  - Too large
-  - Too small
+  - Too large: ...
+  - Too small: ...
   - Fixed Size with Overlapping Chunking, minimize world cut off from context
   - Recursive Character Splitting
+  - Semantic Chunking
+  - LLM Based Chunking, Context-Aware Chunking
+- Query Parsing
+  - Query Rewriting, use LLM to rewrite the query before submitting to the retriever
+  - Named Entity Recognition (GLINER), takes original prompt and list of entities
+  - Hypothetical Document Embeddings (HyDE), generates a hypothetical documents that would be ideal search results
+- Architecture
+  - 🏎️ Bi-Encoder, embedded separately, can pre-preocess
+  - 🧑‍🎨 Cross-Encoder, better search results but scale terribly
+  - ⚖️ ColBERT, combines rich interactions with scalability, but requires significant storage
+- Reranking, after initial retrieval but before LLM generation
+  - Using more capable model (e.g. Cross-Encoder or LLM)
 - Useful Python libraries
   - `Weaviate`
 
